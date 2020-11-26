@@ -44,7 +44,7 @@ class ConsultaProdutos extends Component {
                         </thead>
                         <tbody>
                             {
-                                this.state.produtos.map( (prod, index) => {
+                                this.state.produtos.length > 0 && this.state.produtos.map( (prod, index) => {
                                     return (
                                         <tr key={index}>
                                             <td>{prod.nome}</td>

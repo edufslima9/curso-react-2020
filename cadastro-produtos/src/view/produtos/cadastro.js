@@ -38,9 +38,9 @@ class CadastroProduto extends Component {
             fornecedor: this.state.fornecedor
         }
         try {
-        this.service.salvar(produto);
-        this.limpaCampos();
-        this.setState({ sucesso: true });
+            this.service.salvar(produto);
+            this.limpaCampos();
+            this.setState({ sucesso: true });
         }catch(erro) {
             const errors = erro.errors;
             this.setState({ errors: errors });
@@ -59,15 +59,12 @@ class CadastroProduto extends Component {
         const sku = this.props.match.params.sku;
 
         if(sku) {
-            console.log('teste');
             const result = this
                     .service
                     .obterProdutos()
                     .filter( produto => produto.sku === sku );
-            console.log(result);
             if(result.length > 0) {
                 const produtoEncontrado = result[0];
-
                 this.setState({ ...produtoEncontrado });
             }
         }
@@ -93,7 +90,7 @@ class CadastroProduto extends Component {
                         state.errors.map(msg => {
                             return (
                                 <div className="alert alert-dismissible alert-danger">
-                                    <button onClick={this.closeAlert} type="button" className="close" data-dismiss="alert">&times;</button>
+                                    <button type="button" className="close" data-dismiss="alert">&times;</button>
                                     <strong>Erro!</strong> {msg}
                                 </div>
                             )
