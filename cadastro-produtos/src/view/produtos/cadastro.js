@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ProdutoService from '../../app/produtoService';
+
 const estadoInicial = {
     nome: '',
     sku: '',
@@ -10,7 +12,12 @@ const estadoInicial = {
 
 export default class CadastroProduto extends Component {
     
-    state = estadoInicial
+    state = estadoInicial;
+
+    constructor() {
+        super();
+        this.service = new ProdutoService();
+    }
 
     onChange = (event) => {
         const val = event.target.value;
@@ -20,7 +27,15 @@ export default class CadastroProduto extends Component {
     }
 
     onSubmit = (event) => {
-        console.log(this.state);
+        const produto = {
+            nome: this.state.nome,
+            sku: this.state.sku,
+            descricao: this.state.descricao,
+            preco: this.state.preco,
+            fornecedor: this.state.fornecedor
+        }
+        this.service.salvar(produto);
+        console.log('Salvo com sucesso');
     }
 
     limpaCampos = () => {
