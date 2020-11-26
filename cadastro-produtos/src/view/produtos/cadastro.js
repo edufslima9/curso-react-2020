@@ -10,7 +10,8 @@ const estadoInicial = {
     preco: 0,
     fornecedor: '',
     sucesso: false,
-    errors: []
+    errors: [],
+    atualizando: false
 }
 
 class CadastroProduto extends Component {
@@ -65,7 +66,7 @@ class CadastroProduto extends Component {
                     .filter( produto => produto.sku === sku );
             if(result.length > 0) {
                 const produtoEncontrado = result[0];
-                this.setState({ ...produtoEncontrado });
+                this.setState({ ...produtoEncontrado, atualizando: true });
             }
         }
     }
@@ -75,7 +76,7 @@ class CadastroProduto extends Component {
 
         return (
             <div className="card">
-                <div className="card-header">Cadastro de Produto</div>
+                <div className="card-header">{ state.atualizando ? 'Atualização' : 'Cadastro' } de Produto</div>
                 <div className="card-body">
                     
                     {
@@ -106,7 +107,7 @@ class CadastroProduto extends Component {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>SKU: *</label>
-                                <input type="text" name="sku" value={state.sku} onChange={this.onChange} className="form-control" />
+                                <input type="text" name="sku" disabled={state.atualizando} value={state.sku} onChange={this.onChange} className="form-control" />
                             </div>
                         </div>
                     </div>
@@ -134,7 +135,7 @@ class CadastroProduto extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-1">
-                            <button onClick={this.onSubmit} className="btn btn-success">Salvar</button>
+                            <button onClick={this.onSubmit} className="btn btn-success">{ state.atualizando ? 'Atualizar' : 'Salvar' }</button>
                         </div>
                         <div className="col-md-1">
                             <button onClick={this.limpaCampos} className="btn btn-primary">Limpar</button>

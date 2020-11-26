@@ -29,18 +29,17 @@ export default class ProdutoService {
 
     obterProdutos = () => {
         const produtos = localStorage.getItem(PRODUTOS);
+        if(!produtos) return [];
         return JSON.parse(produtos);
     }
 
     obterIndex = (sku) => {
         let index = null;
         const prods = localStorage.getItem(PRODUTOS);
-        if(prods !== null) {
-            this.obterProdutos().forEach( (prod, i) => {
-                if(prod.sku === sku)
-                    index = i;
-            });
-        }
+        this.obterProdutos().forEach( (prod, i) => {
+            if(prod.sku === sku)
+                index = i;
+        });
         return index;
     }
 
