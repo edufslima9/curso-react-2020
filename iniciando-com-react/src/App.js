@@ -22,6 +22,10 @@ class App extends Component {
     )
   }
 
+  componentDidMount() {
+    console.log("Executou o componentDidMount");
+  }
+
   // Usando funções normais
   /*constructor() {
     super();
@@ -38,7 +42,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <input type="text" value={this.state.nome} onChange={this.modificarNome} />
-        <h1>Hello, {this.state.nome}</h1>
+        <h1>Hello {this.props.nome}, sua idade é {this.props.idade}</h1>
         <MeuComboBox/>
       </React.Fragment>
     )
