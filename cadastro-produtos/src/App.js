@@ -1,11 +1,15 @@
 import React from 'react';
 
-import NavBar from './components/navbar'
+import NavBar from './components/navbar';
+import Home from './view/home';
 
 function App() {
   return (
     <>
-      <NavBar/>
+      <div className="container">
+        <NavBar/>
+        <Home/>
+      </div>
     </>
   );
 }
