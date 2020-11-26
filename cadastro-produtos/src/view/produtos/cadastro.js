@@ -8,7 +8,8 @@ const estadoInicial = {
     descricao: '',
     preco: 0,
     fornecedor: '',
-    sucesso: false
+    sucesso: false,
+    errors: []
 }
 
 export default class CadastroProduto extends Component {
@@ -35,13 +36,18 @@ export default class CadastroProduto extends Component {
             preco: this.state.preco,
             fornecedor: this.state.fornecedor
         }
+        try {
         this.service.salvar(produto);
+        this.limpaCampos();
         this.setState({ sucesso: true });
+        }catch(erro) {
+            const errors = erro.errors;
+            this.setState({ errors: errors });
+        }
     }
 
     limpaCampos = () => {
         this.setState(estadoInicial);
-        this.setState({ sucesso: false });
     }
 
     closeAlert = () => {
@@ -62,6 +68,17 @@ export default class CadastroProduto extends Component {
                             <button onClick={this.closeAlert} type="button" className="close" data-dismiss="alert">&times;</button>
                             <strong>Sucesso!</strong> O produto foi salvo!
                         </div>
+                    }
+                    {
+                        state.errors.length > 0 &&
+                        state.errors.map(msg => {
+                            return (
+                                <div className="alert alert-dismissible alert-danger">
+                                    <button onClick={this.closeAlert} type="button" className="close" data-dismiss="alert">&times;</button>
+                                    <strong>Erro!</strong> {msg}
+                                </div>
+                            )
+                        })
                     }
                     <div className="row">
                         <div className="col-md-6">
