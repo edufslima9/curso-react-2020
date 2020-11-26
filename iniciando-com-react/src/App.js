@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import FunctionalComponent from './components/functional';
+
 class App extends Component {
   state = {
     nome : 'Eduardo Felipe'
@@ -44,6 +46,7 @@ class App extends Component {
         <input type="text" value={this.state.nome} onChange={this.modificarNome} />
         <h1>Hello {this.props.nome}, sua idade é {this.props.idade}</h1>
         <MeuComboBox/>
+        <FunctionalComponent nome="Eduardo Felipe" idade={23}/>
       </React.Fragment>
     )
   }
