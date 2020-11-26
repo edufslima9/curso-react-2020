@@ -59,7 +59,7 @@ export default class CadastroProduto extends Component {
 
         return (
             <div className="card">
-                <div className="card-header">Cadastro de produto</div>
+                <div className="card-header">Cadastro de Produto</div>
                 <div className="card-body">
                     
                     {

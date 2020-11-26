@@ -22,7 +22,7 @@ export default class ConsultaProdutos extends Component {
         return(
             <div className="card">
                 <div className="card-header">
-                    Cadastro de Produto
+                    Consulta de Produtos
                 </div>
                 <div className="card-body">
                     <table className="table table-hover">
