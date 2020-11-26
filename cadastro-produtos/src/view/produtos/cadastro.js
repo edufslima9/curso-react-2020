@@ -7,7 +7,8 @@ const estadoInicial = {
     sku: '',
     descricao: '',
     preco: 0,
-    fornecedor: ''
+    fornecedor: '',
+    sucesso: false
 }
 
 export default class CadastroProduto extends Component {
@@ -35,11 +36,16 @@ export default class CadastroProduto extends Component {
             fornecedor: this.state.fornecedor
         }
         this.service.salvar(produto);
-        console.log('Salvo com sucesso');
+        this.setState({ sucesso: true });
     }
 
     limpaCampos = () => {
         this.setState(estadoInicial);
+        this.setState({ sucesso: false });
+    }
+
+    closeAlert = () => {
+        this.setState({ sucesso: false });
     }
     
     render() {
@@ -49,6 +55,14 @@ export default class CadastroProduto extends Component {
             <div className="card">
                 <div className="card-header">Cadastro de produto</div>
                 <div className="card-body">
+                    
+                    {
+                        state.sucesso && 
+                        <div className="alert alert-dismissible alert-success">
+                            <button onClick={this.closeAlert} type="button" className="close" data-dismiss="alert">&times;</button>
+                            <strong>Sucesso!</strong> O produto foi salvo!
+                        </div>
+                    }
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group">
