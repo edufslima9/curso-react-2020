@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
+const estadoInicial = {
+    nome: '',
+    sku: '',
+    descricao: '',
+    preco: 0,
+    fornecedor: ''
+}
+
 export default class CadastroProduto extends Component {
     
-    state = {
-        nome: '',
-        sku: '',
-        descricao: '',
-        preco: 0,
-        fornecedor: ''
-    }
+    state = estadoInicial
 
     onChange = (event) => {
         const val = event.target.value;
@@ -19,6 +21,10 @@ export default class CadastroProduto extends Component {
 
     onSubmit = (event) => {
         console.log(this.state);
+    }
+
+    limpaCampos = () => {
+        this.setState(estadoInicial);
     }
     
     render() {
@@ -69,7 +75,7 @@ export default class CadastroProduto extends Component {
                             <button onClick={this.onSubmit} className="btn btn-success">Salvar</button>
                         </div>
                         <div className="col-md-1">
-                            <button className="btn btn-primary">Limpar</button>
+                            <button onClick={this.limpaCampos} className="btn btn-primary">Limpar</button>
                         </div>
                     </div>
                 </div>
